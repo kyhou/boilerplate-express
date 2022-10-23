@@ -25,19 +25,22 @@ app.get("/json", function (req, res) {
 app.get("/now", function (req, res, next) {
     req.time = new Date().toString();
     next();
-}, function(req, res){
-    res.json({time: req.time});
+}, function (req, res) {
+    res.json({ time: req.time });
 });
 
-app.get("/:word/echo", function(req, res){
-    res.json({echo: req.params.word});
+app.get("/:word/echo", function (req, res) {
+    res.json({ echo: req.params.word });
 });
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.route("/name").
-    get(function(req,res){
-        res.json({name: `${req.query.first} ${req.query.last}`});
+    get(function (req, res) {
+        res.json({ name: `${req.query.first} ${req.query.last}` });
+    }).
+    post(function (req, res) {
+        res.json({ name: `${req.body.first} ${req.body.last}`});
     });
 
 
